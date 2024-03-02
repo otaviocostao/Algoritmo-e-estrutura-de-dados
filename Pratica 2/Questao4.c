@@ -78,13 +78,23 @@ int main(){
 
 
 //FALTA FINALIZAR ESSA PARTE!!!!!!!!!!!!!!!!!!!!!!!! e testar as funcoes!!!!
+//Após as contas serem criadas, o sistema deverá possibilitar realizações de saques ou depósitos nas contas. O sempre que uma operação de saque ou depósito seja realizada, o sistema deverá imprimir o nome do titular e o saldo final da conta.
 
 
 
             while(operacao == 1){
-                printf("Digite o valor que deseja depositar: ");
+                printf("\nDigite o valor que deseja depositar: ");
                 scanf("%f", &valor);
 
+                saldo_final = deposito(cliente[i].deposito_inicial, valor)
+
+            }
+
+            while(operacao==2){
+                printf("\nDigite o valor que deseja sacar: ");
+                scanf("%f", &valor);
+
+                saldo_final = saque(cliente[i].deposito_inicial, valor);
 
             }
         }
