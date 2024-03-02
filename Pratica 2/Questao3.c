@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#define TAM 10
+#define TAM 3
 
 struct produtos{
     char nome[100];
@@ -19,6 +19,7 @@ int main(){
 
     printf("Cadastro de produtos:\n");
 
+    //Digitar os produtos:
     for(i=0;i<TAM;i++){
         printf("\nDigite o nome do produto: ");
         gets(produto[i].nome);
@@ -31,6 +32,7 @@ int main(){
         getchar();
     }
 
+    //Exibir a lista de produtos:
     printf("Lista de produtos:\n");
     for(i=0; i<TAM; i++){
         strcpy(head_nome, "Nome do produto: ");
@@ -39,11 +41,16 @@ int main(){
 
         strcpy(head_codigo, "Codigo do produto: ");
         strcat(head_codigo, produto[i].codigo);
+        puts(head_codigo);
+        printf("\n");
     }
 
+    //Digitar o codigo para buscar o produto:
     printf("Digite o codigo para buscar: ");
     gets(busca);
-
+    printf("\n");
+    
+    //Exibindo o produto buscado:
     for(i=0;i<TAM;i++){
         condicao = strcmp(busca, produto[i].codigo);
         if(condicao==0){
@@ -54,15 +61,16 @@ int main(){
             strcpy(head_codigo, "Codigo do produto: ");
             strcat(head_codigo, produto[i].codigo);
 
-            printf("Preço do produto: %.2f\n");
+            printf("Preço do produto: %.2f\n", produto[i].preco);
 
             encontrado = 1;
             break;
         }
     }
 
+    //Caso o produto nao seja encontrado:
     if(encontrado != 1){
-        printf("O produto não foi encontrado!\n")
+        printf("O produto não foi encontrado!\n");
     }
 
     system("pause");
