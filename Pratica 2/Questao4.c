@@ -8,7 +8,7 @@
 #include <string.h>
 #include <locale.h>
 
-#define TAM 1
+#define TAM 3
 
 //Criando a estrutura:
 struct conta{
