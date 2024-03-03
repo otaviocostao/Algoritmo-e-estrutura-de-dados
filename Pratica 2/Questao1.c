@@ -22,6 +22,8 @@ int main(){
 
     printf("Sistema de cadastro de alunos:\n\n");
 
+    //Recebendo as informações:
+
     for(i=0;i<TAM;i++){
         printf("Cadastro do %dº Aluno\n\n", i+1);
 
@@ -39,7 +41,7 @@ int main(){
         getchar();
     }
 
-
+    //Exibindo as informações:
 
     for(i=0; i<TAM; i++){
         strcpy(rot_nome, "Nome: ");
