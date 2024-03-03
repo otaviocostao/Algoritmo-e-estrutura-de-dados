@@ -14,7 +14,7 @@
 struct conta{
     char nome[100];
     char cpf[12];
-    char pin[4];
+    char pin[5];
     float deposito_inicial;
 }cliente[TAM];
 
@@ -31,10 +31,10 @@ float saque(float saldo, float sacado){
 int main(){
     setlocale(LC_ALL, "Portuguese;");
 
-    int i, cpf_true=1, pin_true=1, operacao;
-    char log_cpf[11], log_pin[4];
+    int i, cpf_true, pin_true, operacao, continuar=1;
+    char log_cpf[12], log_pin[5];
     float saldo_final, valor;
-    char head_login;
+    char head_login[100], head_user[100];
 
     printf("Inicio - Cadastrar clientes:\n\n");
 
@@ -56,50 +56,77 @@ int main(){
     
     //Logar a conta do cliente para realizar a operação:
 
+    printf("\n---Login do usuário---\n");
     printf("\nDigite o CPF do cliente: ");
     gets(log_cpf);
 
     printf("\nDigite o PIN do cliente: ");
     gets(log_pin);
+    
 
     for(i=0; i<TAM; i++){
         //Realizando a validação do usuario:
         cpf_true = strcmp(log_cpf, cliente[i].cpf);
         pin_true = strcmp(log_pin, cliente[i].pin);
-
-        if((cpf_true==0) && (pin_true == 0)){
+        printf("\n%d %d\n", cpf_true, pin_true);
+        
+//if((cpf_true==0) && (pin_true == 0))
+            
+        do{
+            if (cpf_true == 0 && pin_true == 0){
+            
             strcpy(head_login, "Seja bem-vindo ");
             strcat(head_login, cliente[i].nome);
             puts(head_login);
+            printf("Seu saldo atual: %.2f\n\n", cliente[i].deposito_inicial);
 
-            printf("Digite a operacao que deseja:\n[1]Deposito\n[2]Saque");
-            scanf("%f", &operacao);
+            printf("Digite a operacao que deseja:\n[1]Deposito\n[2]Saque\n");
+            scanf("%d", &operacao);}
 
-
-
-//FALTA FINALIZAR ESSA PARTE!!!!!!!!!!!!!!!!!!!!!!!! e testar as funcoes!!!!
-//Após as contas serem criadas, o sistema deverá possibilitar realizações de saques ou depósitos nas contas. O sempre que uma operação de saque ou depósito seja realizada, o sistema deverá imprimir o nome do titular e o saldo final da conta.
-
-
-
-            while(operacao == 1){
+            if(operacao == 1){
                 printf("\nDigite o valor que deseja depositar: ");
                 scanf("%f", &valor);
 
-                saldo_final = deposito(cliente[i].deposito_inicial, valor)
+                saldo_final = deposito(cliente[i].deposito_inicial, valor);
+                printf("\nDeposito no valor de %.2f realizado com sucesso!\n\n", valor);
 
+                strcpy(head_user, "Titular da conta: ");
+                strcat(head_user, cliente[i].nome);
+                puts(head_user);
+
+                printf("Saldo atual: %.2f\n\n", saldo_final);
             }
 
-            while(operacao==2){
+            if(operacao==2){
                 printf("\nDigite o valor que deseja sacar: ");
                 scanf("%f", &valor);
+                
+                if(valor<=cliente[i].deposito_inicial){
+                    saldo_final = saque(cliente[i].deposito_inicial, valor);
+                    printf("\nSaque no valor de %.2f realizado com sucesso!\n", valor);
 
-                saldo_final = saque(cliente[i].deposito_inicial, valor);
+                    strcpy(head_user, "Titular da conta: ");
+                    strcat(head_user, cliente[i].nome);
+                    puts(head_user);
+
+                    printf("Saldo atual: %.2f\n\n", saldo_final);
+
+                    }else{
+                        printf("Saldo insuficiente para realizar a operação!\n");
+                    }
 
             }
-        }
+
+            printf("[1]Continuar\n[2]Sair\n");
+            scanf("%d", &continuar);
+            if(continuar!=1){
+                printf("\nSaindo!\n");
+            }
+
+        }while(continuar==1);
     }
 
     system("pause");
     return 0;
+
 }
