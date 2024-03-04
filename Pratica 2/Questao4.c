@@ -1,14 +1,14 @@
-//Escreva um programa que simule contas banc√°rias, com as seguintes especifica√ß√µes: ‚Ä¢ Ao iniciar o programa vamos criar contas banc√°rias para tr√™s clientes.
-//Cada conta ter√° o nome e o CPF do cliente associado a ela. O no ato da cria√ß√£o da conta o cliente precisar√° fazer um dep√≥sito inicial.
+//Escreva um programa que simule contas banc·rias, com as seguintes especificaÁıes: ? Ao iniciar o programa vamos criar contas banc·rias para trÍs clientes.
+//Cada conta ter· o nome e o CPF do cliente associado a ela. O no ato da criaÁ„o da conta o cliente precisar· fazer um depÛsito inicial.
 
-//Ap√≥s as contas serem criadas, o sistema dever√° possibilitar realiza√ß√µes de saques ou dep√≥sitos nas contas. O sempre que uma opera√ß√£o de saque ou dep√≥sito seja realizada, o sistema dever√° imprimir o nome do titular e o saldo final da conta.
+//ApÛs as contas serem criadas, o sistema dever· possibilitar realizaÁıes de saques ou depÛsitos nas contas. O sempre que uma operaÁ„o de saque ou depÛsito seja realizada, o sistema dever· imprimir o nome do titular e o saldo final da conta.
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
 
-#define TAM 3
+#define TAM 1
 
 //Criando a estrutura:
 struct conta{
@@ -46,42 +46,59 @@ int main(){
         printf("\nDigite o CPF do cliente: ");
         gets(cliente[i].cpf);
 
-        printf("\nDigite um PIN de 4 digitos para o usu√°rio: ");
-        gets(cliente[i].pin);
+        do{
+            printf("\nDigite um PIN de 4 digitos para o usu·rio: ");
+            gets(cliente[i].pin);
+        }while(strlen(cliente[i].pin)!=4);
 
-        printf("\nDigite o valor do deposito inicial:\n");
-        scanf("%f", &cliente[i].deposito_inicial);
+        do{
+            printf("\nDigite o valor do deposito inicial:\n");
+            scanf("%f", &cliente[i].deposito_inicial);
+        }while(cliente[i].deposito_inicial<=0);
         getchar();
     }
     
-    //Logar a conta do cliente para realizar a opera√ß√£o:
+    //Logar a conta do cliente para realizar a operaÁ„o:
 
-    printf("\n---Login do usu√°rio---\n");
-    printf("\nDigite o CPF do cliente: ");
-    gets(log_cpf);
+    printf("\n---Login do usu·rio---\n");
+    do{
+        printf("\nDigite o CPF do cliente: ");
+        gets(log_cpf);
 
-    printf("\nDigite o PIN do cliente: ");
-    gets(log_pin);
+        if(strlen(log_cpf)!=11){
+            printf("\nO CPF digitado È invalido.\n");
+        }
+    }while(strlen(log_cpf)!=11);
     
+    do{
+        printf("\nDigite o PIN do cliente: ");
+        gets(log_pin);
+
+        if(strlen(log_pin)!=4){
+            printf("\nO PIN digitado È invalido.\n");
+        }
+    }while(strlen(log_pin)!=4);
 
     for(i=0; i<TAM; i++){
-        //Realizando a valida√ß√£o do usuario:
+        //Realizando a validaÁ„o do usuario:
         cpf_true = strcmp(log_cpf, cliente[i].cpf);
         pin_true = strcmp(log_pin, cliente[i].pin);
-        printf("\n%d %d\n", cpf_true, pin_true);
         
 //if((cpf_true==0) && (pin_true == 0))
             
         do{
             if (cpf_true == 0 && pin_true == 0){
             
-            strcpy(head_login, "Seja bem-vindo ");
-            strcat(head_login, cliente[i].nome);
-            puts(head_login);
-            printf("Seu saldo atual: %.2f\n\n", cliente[i].deposito_inicial);
+                strcpy(head_login, "Seja bem-vindo ");
+                strcat(head_login, cliente[i].nome);
+                puts(head_login);
+                printf("Seu saldo atual: %.2f\n\n", cliente[i].deposito_inicial);
 
-            printf("Digite a operacao que deseja:\n[1]Deposito\n[2]Saque\n");
-            scanf("%d", &operacao);}
+                printf("Digite a operacao que deseja:\n[1]Deposito\n[2]Saque\n");
+                scanf("%d", &operacao);}else{
+                printf("\nUsu·rio n„o encontrado\n");
+                break;
+            }
 
             if(operacao == 1){
                 printf("\nDigite o valor que deseja depositar: ");
@@ -112,7 +129,7 @@ int main(){
                     printf("Saldo atual: %.2f\n\n", saldo_final);
 
                     }else{
-                        printf("Saldo insuficiente para realizar a opera√ß√£o!\n");
+                        printf("Saldo insuficiente para realizar a operaÁ„o!\n");
                     }
 
             }
