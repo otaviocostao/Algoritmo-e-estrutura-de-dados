@@ -1,4 +1,4 @@
-//Escrever um programa que cadastre o nome, a matrÃ­cula e duas notas de vÃ¡rios alunos. Em seguida imprima a matrÃ­cula, o nome e a mÃ©dia de cada um deles.
+//Escrever um programa que cadastre o nome, a matrícula e duas notas de vários alunos. Em seguida imprima a matrícula, o nome e a média de cada um deles.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,10 +22,10 @@ int main(){
 
     printf("Sistema de cadastro de alunos:\n\n");
 
-    //Recebendo as informaÃ§Ãµes:
+    //Recebendo as informações:
 
     for(i=0;i<TAM;i++){
-        printf("Cadastro do %dÂº Aluno\n\n", i+1);
+        printf("Cadastro do %dº Aluno\n\n", i+1);
 
         printf("Digite o nome do aluno: ");
         gets(aluno[i].nome);
@@ -33,15 +33,15 @@ int main(){
         printf("\nDigite a matricula do aluno: ");
         gets(aluno[i].matricula);
 
-        printf("\nDigite a nota da primeira avaliaÃ§Ã£o: ");
+        printf("\nDigite a nota da primeira avaliação: ");
         scanf("%f", &aluno[i].av1);
 
-        printf("\nDigite a nota da segunda avaliaÃ§Ã£o: ");
+        printf("\nDigite a nota da segunda avaliação: ");
         scanf("%f", &aluno[i].av2);
         getchar();
     }
 
-    //Exibindo as informaÃ§Ãµes:
+    //Exibindo as informações:
 
     for(i=0; i<TAM; i++){
         strcpy(rot_nome, "Nome: ");
