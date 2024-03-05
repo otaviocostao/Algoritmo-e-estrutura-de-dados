@@ -5,7 +5,7 @@
 #include <string.h>
 #include <locale.h>
 
-#define TAM 2
+#define TAM 3
 
 struct info{
     char marca[15];
