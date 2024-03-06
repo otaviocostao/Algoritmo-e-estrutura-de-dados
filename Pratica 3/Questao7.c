@@ -49,4 +49,7 @@ int main (){
         checar_numero(num1, num2);
 
     }while(num1>0);
+
+    system("pause");
+    return 0;
 }
