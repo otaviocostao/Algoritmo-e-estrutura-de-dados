@@ -2,32 +2,35 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 
+// Função para ordenar os caracteres:
 
-void orderChar(char ch1, char ch2, char ch3){
-    char temp;
+void orderChar(char ch1[2], char ch2[2], char ch3[2]){
+    char temp[2];
 
-    if(ch1>ch2){
-        temp = ch1;
-        ch1 = ch2;
-        ch2 = temp;
+    if(strcmp(ch1,ch2)>0){ 
+        strcpy(temp, ch1);
+        strcpy(ch1, ch2);
+        strcpy(ch2, temp);
     }
 
-    if(ch2 > ch3){
-        temp = ch2;
-        ch2 = ch3;
-        ch3 = temp;
+    if(strcmp(ch2,ch3)> 0){
+        strcpy(temp, ch2);
+        strcpy(ch2, ch3);
+        strcpy(ch3, temp);
     
 
-        if(ch1>ch2){
-            temp = ch1;
-            ch1 = ch2;
-            ch2 = temp;
+        if(strcmp(ch1,ch2)>0){
+            strcpy(temp, ch1);
+            strcpy(ch1, ch2);
+            strcpy(ch2, temp);
         }
     }
 
-    printf("Ordem crescente dos caracteres: %c, %c, %c\n", ch1, ch2, ch3);
+    
+    printf("Ordem crescente dos caracteres: %s, %s, %s\n", ch1, ch2, ch3);
 
 }
 
@@ -35,21 +38,18 @@ int main (){
 
     setlocale(LC_ALL, "Portuguese");
 
-    char ch1, ch2, ch3;
+    char ch1[2], ch2[2], ch3[2];
 
     printf("Digite a primeira letra: ");
-    scanf("%c", &ch1);
-    getchar();
+    gets(ch1);
 
     printf("\nDigite a segunda letra: ");
-    scanf("%c", &ch2);
-    getchar();
+    gets(ch2);
 
     printf("\nDigite a terceira letra: ");
-    scanf("%c", &ch3);
-    getchar();
+    gets(ch3);
 
-    orderChar(ch1, ch2, ch3);
+    orderChar(ch1, ch2, ch3); // Chamando a função
 
     system("pause");
     return 0;
