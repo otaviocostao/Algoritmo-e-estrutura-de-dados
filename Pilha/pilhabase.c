@@ -4,7 +4,7 @@
 #define max 6
 
 int pilha[max];
-int topo=-1;
+int topo;
 
 void menu();
 void inserir(int);
@@ -14,49 +14,27 @@ void listagem();
 int ver_vazia();
 int ver_cheia();
 void buscar();
+void inicializa();
 
 
 int main(){
-    setlocale(LC_ALL, "Portguese");
-    int opcao;
+    inicializa();
+    setlocale(LC_ALL, "Portuguese");
 
-    menu();
-    scanf("%d", &opcao);
+    int resp = 1;
 
-    switch (opcao)
-    {
-    case 1:
-        /* code */
-        break;
-    case 2:
-        /* code */
-        break;
-    case 3:
-        /* code */
-        break;
-    case 4:
-        /* code */
-        break;
-    case 5:
-        /* code */
-        break;
-    case 6:
-        /* code */
-        break;
-    case 7:
-        /* code */
-        break;
-    case 8:
-        /* code */
-        break;
-    
-    default:
-        break;
+    while(resp == 1){
+        menu();
+        printf("\nDeseja continuar no menu?\n[1]Sim [2]N„o\n");
+        scanf("%d", &resp);
     }
+
+    system("pause");
+    return 0;    
 }
 
 void menu(){
-    
+    int opcao, elemento;
     system("cls");
 
     printf("-------MENU-------\n");
@@ -64,21 +42,97 @@ void menu(){
     printf("[2] - REMOVER\n");
     printf("[3] - VER TOPO\n");
     printf("[4] - LISTAGEM\n");
-    printf("[5] - VER VAZIA\n");
-    printf("[6] - VER CHEIA\n");
+    printf("[5] - VERIFICAR SE EST¡ VAZIA\n");
+    printf("[6] - VERIFICAR SE EST¡ CHEIA\n");
     printf("[7] - BUSCAR\n");
     printf("[8] - SAIR\n\n");
 
-    printf("Digite a op√ß√£o que deseja: ");
+    printf("Digite a opÁ„o que deseja: ");
+    scanf("%d", &opcao);
+
+    switch (opcao)
+    {
+
+    //INSERIR ELEMENTO
+    case 1:
+        if(ver_cheia()==1){
+            printf("\nA pilha est· cheia, n„o È possivel inserir.\n");
+        }else{
+            printf("Digite o elemento que deseja inserir: ");
+            scanf("%d", &elemento);
+            inserir(elemento);
+        }
+        break;
+
+    //REMOVER ELEMENTO
+    case 2:
+        if(ver_vazia()==1){
+            printf("\nA pilha est· vazia, n„o È possivel remover.\n");
+
+        }else{
+            remover();
+        }
+        break;
+
+    //VER O ELEMENTO DO TOPO DA PILHA
+    case 3:
+        if(ver_vazia()==1){
+            printf("\nA pilha est· vazia, n„o È possivel ver o topo.\n");
+        }else{
+        ver_topo();
+        break;
+        }
+
+    //LISTAR OS ELEMENTOS DA PILHA
+    case 4:
+        if(ver_vazia()==1){
+            printf("\nA pilha est· vazia, n„o È possivel listar os elementos.\n");
+        }else{
+            listagem();
+        }
+        break;
+
+    //VERIFICAR SE A PILHA ESTA VAZIA
+    case 5:
+        if(ver_vazia()==1){
+            printf("\nA pilha est· vazia\n");
+        }else{
+            printf("\nA pilha n„o est· vazia\n");
+        }
+        break;
+
+    //VERIFICAR SE A PILHA ESTA CHEIA
+    case 6:
+        if(ver_cheia()==1){
+            printf("\nA pilha est· cheia.\n");
+        }else{
+            printf("\nA pilha n„o est· cheia.\n");
+        }
+        break;
+
+    //BUSCAR ELEMENTO NA PILHA
+    case 7:
+        if(ver_vazia()==1){
+            printf("\nA pilha est· vazia, n„o È possivel buscar elementos.\n");
+        }else{
+            buscar();
+        }
+        break;
+
+    //SAIR
+    case 8:
+        printf("\nSaindo!\n");
+        break;
+    
+    default:
+        printf("\nOpÁ„o invalida!\n");
+        break;
+    }
 }
 
 void inserir(int elemento){
-    if(topo!=max){
-        printf("Digite o elemento que deseja inserir: ");
-        scanf("%d", &elemento);
-        topo++;
-        pilha[topo] = elemento;
-    }
+    topo++;
+    pilha[topo] = elemento;
 }
 
 void remover(){
@@ -87,7 +141,7 @@ void remover(){
 }
 
 void ver_topo(){
-    printf("O elemento do topo √©: %d", pilha[topo]);
+    printf("O elemento do topo È: %d", pilha[topo]);
 }
 
 void listagem(){
@@ -106,7 +160,7 @@ int ver_vazia(){
 }
 
 int ver_cheia(){
-    if(topo == max){
+    if(topo == max-1){
         return 1;
     }else{
         return 0;
@@ -120,13 +174,17 @@ void buscar(){
     scanf("%d", &elemento);
 
     for(i=topo; i>=0; i--){
-        if(pilha[topo]==elemento){
+        if(pilha[i]==elemento){
             printf("\nO elemento %d foi encontrado na pilha\n", pilha[i]);
             achei = 1;
         }
     }
 
     if(!achei){
-        printf("\nO elemento buscado n√£o foi encontrado.\n");
+        printf("\nO elemento buscado n„o foi encontrado.\n");
     }
+}
+
+void inicializa(){
+    topo =-1;
 }
