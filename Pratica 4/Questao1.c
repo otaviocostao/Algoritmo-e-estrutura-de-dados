@@ -3,45 +3,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#define max 10
+#define max 50
 
 int pilha[max];
 int topo;
 
 void menu();
-void converter(int);
+void converter();
 void desempilhar();
 void inicializa();
 
 
 int main(){
+    int continuar;
     inicializa();
     setlocale(LC_ALL, "Portuguese");
 
-    menu();
+    do{
+        menu();
+        printf("\nDeseja continuar no menu?[1]Sim [2]Não\n");
+        scanf("%d", &continuar);
+    }while(continuar==1);
 
     system("pause");
     return 0;    
 }
 
 void menu(){
-    int numero;
+    int opcao;
 
     system("cls");
 
-    printf("Digite o nÃºmero para ser convertido: ");
-    scanf("%d", &numero);
+    printf("--- MENU ---\n\n");
+    printf("[1] - Converter um numero para binario\n");
+    printf("[2] - Exibir o numero convertido\n");
+    printf("[3] - Sair\n");
+    scanf("%d", &opcao);
 
-    converter(numero);
-    desempilhar();
+
+    switch (opcao)
+    {
+    case 1:
+        inicializa();
+        converter();
+        break;
+    
+    case 2:
+    printf("\nNumero convertido:\n");
+        desempilhar();
+        break;
+
+    case 3:
+        printf("\nSaindo...\n");
+        break;
+
+    default:
+        printf("\nOpção invalida!\n");
+        break;
+    }
 
 }
 
-void converter(int elemento){
-    int resto;
-    while(elemento>0){
-        resto = elemento % 2;
-        elemento = elemento/2;
+void converter(){
+    int resto, numero;
+    printf("Digite o nÃºmero para ser convertido: ");
+    scanf("%d", &numero);
+
+    while(numero>0){
+        resto = numero % 2;
+        numero = numero/2;
         topo++;
         pilha[topo] = resto;
     }
