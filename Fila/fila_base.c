@@ -19,13 +19,13 @@ void inicializar();
 
 int main(){
     inicializar();
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "portuguese");
     int resp=1;
 
     while(resp==1){
         menu();
 
-        printf("\nDeseja continuar no menu?\n[1]Sim [2]Não\n");
+        printf("\nDeseja continuar no menu?\n[1]Sim [2]N?o\n");
         scanf("%d", &resp);
     }
     system("pause");
@@ -40,13 +40,13 @@ void menu(){
     printf("[2] - Remover um elemento\n");
     printf("[3] - Listar a fila\n");
     printf("[4] - Buscar elemento\n");
-    printf("[5] - Verificar se está cheia\n");
-    printf("[6] - Verificar se está vazia\n");
-    printf("[7] - Ver o início\n");
+    printf("[5] - Verificar se est? cheia\n");
+    printf("[6] - Verificar se est? vazia\n");
+    printf("[7] - Ver o in?cio\n");
     printf("[8] - Ver o final\n");
     printf("[9] - Sair\n");
 
-    printf("\nDigite o numero da função que deseja: ");
+    printf("\nDigite o numero da fun??o que deseja: ");
     scanf("%d", &opcao);
 
     switch (opcao)
@@ -69,17 +69,17 @@ void menu(){
     
     case 5:
         if(ver_cheia()==1){
-            printf("\nA fila está cheia.\n");
+            printf("\nA fila est? cheia.\n");
         }else{
-            printf("\nA fila não está cheia.\n");
+            printf("\nA fila n?o est? cheia.\n");
         }
         break;
     
     case 6:
         if(ver_vazia()==1){
-            printf("\nA fila está vazia.\n");
+            printf("\nA fila est? vazia.\n");
         }else{
-            printf("\nA fila não está vazia.\n");
+            printf("\nA fila n?o est? vazia.\n");
         }
         break;
     
@@ -96,7 +96,7 @@ void menu(){
         break;
     
     default:
-        printf("\nOpção invalida.\n");
+        printf("\nOp??o invalida.\n");
         break;
     }
 
@@ -122,19 +122,19 @@ void inserir(){
     int elemento;
 
     if(ver_cheia()==1){
-        printf("\nA fila já está cheia, não é possivel inserir.\n");
+        printf("\nA fila j? est? cheia, n?o ? possivel inserir.\n");
     }else{
         printf("\nDigite o elemento que deseja armazenar: ");
         scanf("%d", &elemento);
-    }
 
-    fila[fim] = elemento;
-    fim++;
+        fila[fim] = elemento;
+        fim++;
+    }
 };
 
 void remover(){
     if(ver_vazia()==1){
-        printf("\nA fila está vazia, não é possível remover algum elemento.\n");
+        printf("\nA fila est? vazia, n?o ? poss?vel remover algum elemento.\n");
     }else{
         printf("\nO valor removido foi %d.", fila[inicio]);
         inicio++;
@@ -143,24 +143,24 @@ void remover(){
 
 void ver_inicio(){
     if(ver_vazia()==1){
-        printf("\nA fila está vazia, não é possivel ver o inicio.\n");
+        printf("\nA fila est? vazia, n?o ? possivel ver o inicio.\n");
     }else{
-        printf("\nO valor do inicio é: %d.\n", fila[inicio]);
+        printf("\nO valor do inicio ?: %d.\n", fila[inicio]);
     }
 }
 
 void ver_fim(){
     if(ver_vazia()==1){
-        printf("\nA lista está vazia, não é possivél ver o final.\n");
+        printf("\nA lista est? vazia, n?o ? possiv?l ver o final.\n");
     }else{
-        printf("\nO valor do final é: %d.\n", fila[fim-1]);
+        printf("\nO valor do final ?: %d.\n", fila[fim-1]);
     }
 }
 
 void listagem(){
     int i;
     if(ver_vazia()==1){
-        printf("A fila está vazia, não é possivel listar.\n");
+        printf("A fila est? vazia, n?o ? possivel listar.\n");
     }else{
         for(i=inicio; i<fim; i++){
             printf("%d\n", fila[i]);
@@ -173,20 +173,20 @@ void buscar(){
     int i, achei=0, elemento;
 
     if(ver_vazia()==1){
-        printf("\nA fila está vazia, não é possivel buscar.\n");
+        printf("\nA fila est? vazia, n?o ? possivel buscar.\n");
     }else{
         printf("\nDigite o elemento que deseja buscar: ");
         scanf("%d", &elemento);
 
         for(i=inicio; i<fim; i++){
             if(fila[i] == elemento){
-                printf("\nO elemento %d foi encontrado na fila na posição %d", elemento, i);
+                printf("\nO elemento %d foi encontrado na fila na posi??o %d", elemento, i);
                 achei = 1;
             }
         }
 
         if(!achei){
-            printf("\nO elemento %d não foi encontrado na fila.\n", elemento);
+            printf("\nO elemento %d n?o foi encontrado na fila.\n", elemento);
         }
     }
 }
